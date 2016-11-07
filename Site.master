@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+        <title>Living Well Property</title>
+        <link rel="stylesheet" type="text/css" href="./livingwell.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+    
+        
+    <img id="logo" src="./img/logo1.png" />        
+    <img id="banner" src="./img/banner.jpg" />
+
+    <div id="link_background">
+        <div id="link1">    
+            <a href="./default.aspx">Home</a>
+        </div>
+        <div id="link2">
+            <a href="./news.aspx">News</a>
+        </div>
+        <div id="link3">
+            <a href="./agent.aspx">Agents</a>
+        </div>
+        <div id="link4">
+            <a href="./contact.aspx">Contact Us</a>
+        </div>
+    </div>
+    
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    
+    </form>
+</body>
+</html>

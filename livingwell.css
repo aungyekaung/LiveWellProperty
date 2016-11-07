@@ -1,0 +1,274 @@
+﻿@media only screen and (max-width: 900px)
+{
+	#logo
+	{
+		position: fixed;
+		right: 42.5%;
+		top: 0%;
+		width: 20%;
+        height:20%;        
+	}
+
+ 	#banner
+	{		
+		position: fixed;
+		top: 20%;
+		width: 100%;
+        height: 20%;        
+	}
+     
+    #links 
+    {
+        position: fixed;
+        left: 10%;
+        top: 41%;
+        width: 80%;
+    }
+
+    td
+    {
+        text-align: center;
+        font-size: 100%;
+        font-family: Arial;  
+        width: 25%;
+        height: 10%;  
+        background-color:cornflowerblue;   
+    }    
+    
+    
+    /*#map
+    {
+        position:fixed;
+        top: 65%;
+    }*/
+
+    .btnPostback
+    {
+        position:fixed;
+        top: 70%;
+    }
+
+    .lblPostback
+    {
+        position:fixed;
+        top: 75%;
+    }
+
+    .btnLabel
+    {
+        position:fixed;
+        top: 80%;
+    }
+
+    .lbl2
+    {
+        position:fixed;
+        top:85%;
+    }
+     
+     
+      
+}
+
+
+@media only screen and (min-width: 900px)
+{    
+    body
+    {
+		background-color: #99d3df;
+        font-family:'Century Gothic';
+        /*background-color: #00ffff;*/
+    }
+
+    /*#container
+    {
+        background-color: #000000;
+	   width: 100%;
+	   height: 1000px;	
+	   top: 0px;	
+    }*/
+          
+    #logo
+    {
+	    /*position:fixed;
+	    top: 0px;
+	    right: 15%;
+	    width: 15%;
+	    height: 25%;*/
+
+	    position:fixed;
+	    top: 5%;
+	    right: 15%;
+	    width: 15%;
+	    height: 25%;
+
+
+    }
+    
+    #banner
+    {
+	    /*position:fixed;
+	    top: 0px;
+	    left: 15%;
+	    width: 55%;
+	    height: 25%;
+	    */	
+
+	    position:fixed;
+	    top: 5%;
+	    left: 15%;
+	    width: 55%;
+	    height: 25%;	
+    }
+
+    #banner1
+    {
+	    /*position:fixed;
+	    top: 0px;
+	    left: 15%;
+	    width: 55%;
+	    height: 25%;
+	    */	
+
+	    position:fixed;
+	    top: 5%;
+	    left: 15%;
+	    width: 55%;
+	    height: 25%;	
+    }
+
+
+    #link_background
+    {
+        position: fixed;
+        left: 15%;
+        width: 70%;
+        height:5%;        
+        background-color: aquamarine;
+
+
+    }
+
+    #link1 
+    {
+        /*position: fixed;
+        left: 15%;
+        top: 26%;
+        width: 70%;
+	   */
+
+	   position: fixed;
+	   top: 2%;
+       left: 15%; 		
+	   width: 10%;
+       height:auto;              
+    }
+
+    #link2
+    {
+        /*position: fixed;
+        left: 15%;
+        top: 26%;
+        width: 70%;
+	   */
+
+	   position: fixed;
+	   top: 2%;
+       left: 25%; 		
+	   width: 10%;
+
+    }
+
+    #link3
+    {
+        /*position: fixed;
+        left: 15%;
+        top: 26%;
+        width: 70%;
+	   */
+
+	   position: fixed;
+	   top: 2%;
+       left: 35%; 		
+	   width: 10%;
+    }
+
+    #link4
+    {
+        /*position: fixed;
+        left: 15%;
+        top: 26%;
+        width: 70%;
+	   */
+
+	   position: fixed;
+	   top: 2%;
+       left: 45%; 		
+	   width: 10%;
+    }
+
+    /*tr
+    {
+		height:10%;
+    }
+
+    td
+    {
+        text-align: left;
+        font-size: 100%;
+        font-family: Arial;  
+        width: 5%;
+        /*height: 15%;
+        background-color:#3d82da; 
+    }*/           
+    
+    a:link
+    {
+		text-decoration: none;		
+        font-size:medium;        
+    }
+
+    a:hover
+    {
+		text-decoration: none;		
+    }
+
+
+    h1
+    {
+        top:50%;
+        float: right;
+    }
+
+
+    /*.txt
+    {
+        position:fixed;
+        top: 40%;
+    }
+
+    .btnPostback
+    {
+        position:fixed;
+        top: 50%;
+    }
+
+    .lblPostback
+    {
+        position:fixed;
+        top: 60%;
+    }
+
+    .btnLabel
+    {
+        position:fixed;
+        top: 70%;
+    }
+
+    .lbl2
+    {
+        position:fixed;
+        top:80%;
+    }*/
+
+}
