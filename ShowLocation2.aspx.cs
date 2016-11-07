@@ -40,7 +40,7 @@ public partial class ShowLocation2 : System.Web.UI.Page
 
                                     title: ""Property #{0}"",
                                     position: new google.maps.LatLng({1}, {2}),
-                                    url: ""ShowDetails.aspx?PropertyID={3}""
+                                    url: ""PropertyDetails.aspx?PropertyID={3}""
                                 }}",
                                    location["PropertyID"],
                                    location["Latitude"],

@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PropertyDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PropertyDetails">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="SubtypeID" Type="smallint" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="FloorLevel" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="BedroomQty" Type="smallint" Nullable="false" />
+          <Property Name="BathroomQty" Type="smallint" Nullable="false" />
+          <Property Name="TenureID" Type="smallint" Nullable="false" />
+          <Property Name="Developer" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="ListedDate" Type="datetime" Nullable="false" />
+          <Property Name="MRT" Type="nvarchar" MaxLength="100" />
+          <Property Name="School" Type="nvarchar" MaxLength="200" />
+          <Property Name="ChildCare" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreateUser" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropertyID" Type="int" />
+          <Property Name="PropertyImage" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PropertyLocation">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="10" Scale="7" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="10" Scale="7" Nullable="false" />
+          <Property Name="AgentID" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertySubtype">
+          <Key>
+            <PropertyRef Name="SubtypeID" />
+          </Key>
+          <Property Name="SubtypeID" Type="smallint" Nullable="false" />
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="Subtype" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyTenure">
+          <Key>
+            <PropertyRef Name="TenureID" />
+          </Key>
+          <Property Name="TenureID" Type="smallint" Nullable="false" />
+          <Property Name="TenureType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="smallint" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PropertyI__Prope__37A5467C">
+          <End Role="PropertyDetails" Type="Self.PropertyDetails" Multiplicity="0..1" />
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyDetails">
+              <PropertyRef Name="PropertyID" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertySubtype">
+          <End Role="PropertySubtype" Type="Self.PropertySubtype" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertySubtype">
+              <PropertyRef Name="SubtypeID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="SubtypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertyTenure1">
+          <End Role="PropertyTenure" Type="Self.PropertyTenure" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyTenure">
+              <PropertyRef Name="TenureID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="TenureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertyType">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PropertyDbModelStoreContainer">
+          <EntitySet Name="PropertyDetails" EntityType="Self.PropertyDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyImage" EntityType="Self.PropertyImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyLocation" EntityType="Self.PropertyLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertySubtype" EntityType="Self.PropertySubtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTenure" EntityType="Self.PropertyTenure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PropertyI__Prope__37A5467C" Association="Self.FK__PropertyI__Prope__37A5467C">
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+            <End Role="PropertyImage" EntitySet="PropertyImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertySubtype" Association="Self.FK_PropertyDetails_PropertySubtype">
+            <End Role="PropertySubtype" EntitySet="PropertySubtype" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertyTenure1" Association="Self.FK_PropertyDetails_PropertyTenure1">
+            <End Role="PropertyTenure" EntitySet="PropertyTenure" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertyType" Association="Self.FK_PropertyDetails_PropertyType">
+            <End Role="PropertyType" EntitySet="PropertyType" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PropertyDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PropertyDetail">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Int16" Nullable="false" />
+          <Property Name="SubtypeID" Type="Int16" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="FloorLevel" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BedroomQty" Type="Int16" Nullable="false" />
+          <Property Name="BathroomQty" Type="Int16" Nullable="false" />
+          <Property Name="TenureID" Type="Int16" Nullable="false" />
+          <Property Name="Developer" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MRT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="School" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ChildCare" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreateUser" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyImages" Relationship="Self.FK__PropertyI__Prope__37A5467C" FromRole="PropertyDetails" ToRole="PropertyImage" />
+          <NavigationProperty Name="PropertySubtype" Relationship="Self.FK_PropertyDetails_PropertySubtype" FromRole="PropertyDetails" ToRole="PropertySubtype" />
+          <NavigationProperty Name="PropertyTenure" Relationship="Self.FK_PropertyDetails_PropertyTenure1" FromRole="PropertyDetails" ToRole="PropertyTenure" />
+          <NavigationProperty Name="PropertyType" Relationship="Self.FK_PropertyDetails_PropertyType" FromRole="PropertyDetails" ToRole="PropertyType" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropertyID" Type="Int32" />
+          <Property Name="PropertyImage1" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PropertyDetail" Relationship="Self.FK__PropertyI__Prope__37A5467C" FromRole="PropertyImage" ToRole="PropertyDetails" />
+        </EntityType>
+        <EntityType Name="PropertyLocation">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="10" Scale="7" Nullable="false" />
+          <Property Name="Longitude" Type="Decimal" Precision="10" Scale="7" Nullable="false" />
+          <Property Name="AgentID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PropertySubtype">
+          <Key>
+            <PropertyRef Name="SubtypeID" />
+          </Key>
+          <Property Name="SubtypeID" Type="Int16" Nullable="false" />
+          <Property Name="TypeID" Type="Int16" Nullable="false" />
+          <Property Name="Subtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyDetails" Relationship="Self.FK_PropertyDetails_PropertySubtype" FromRole="PropertySubtype" ToRole="PropertyDetails" />
+        </EntityType>
+        <EntityType Name="PropertyTenure">
+          <Key>
+            <PropertyRef Name="TenureID" />
+          </Key>
+          <Property Name="TenureID" Type="Int16" Nullable="false" />
+          <Property Name="TenureType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyDetails" Relationship="Self.FK_PropertyDetails_PropertyTenure1" FromRole="PropertyTenure" ToRole="PropertyDetails" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int16" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyDetails" Relationship="Self.FK_PropertyDetails_PropertyType" FromRole="PropertyType" ToRole="PropertyDetails" />
+        </EntityType>
+        <Association Name="FK__PropertyI__Prope__37A5467C">
+          <End Role="PropertyDetails" Type="Self.PropertyDetail" Multiplicity="0..1" />
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyDetails">
+              <PropertyRef Name="PropertyID" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="PropertyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertySubtype">
+          <End Role="PropertySubtype" Type="Self.PropertySubtype" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertySubtype">
+              <PropertyRef Name="SubtypeID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="SubtypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertyTenure1">
+          <End Role="PropertyTenure" Type="Self.PropertyTenure" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyTenure">
+              <PropertyRef Name="TenureID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="TenureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyDetails_PropertyType">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="1" />
+          <End Role="PropertyDetails" Type="Self.PropertyDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="PropertyDetails">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PropertyDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PropertyDetails" EntityType="Self.PropertyDetail" />
+          <EntitySet Name="PropertyImages" EntityType="Self.PropertyImage" />
+          <EntitySet Name="PropertyLocations" EntityType="Self.PropertyLocation" />
+          <EntitySet Name="PropertySubtypes" EntityType="Self.PropertySubtype" />
+          <EntitySet Name="PropertyTenures" EntityType="Self.PropertyTenure" />
+          <EntitySet Name="PropertyTypes" EntityType="Self.PropertyType" />
+          <AssociationSet Name="FK__PropertyI__Prope__37A5467C" Association="Self.FK__PropertyI__Prope__37A5467C">
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+            <End Role="PropertyImage" EntitySet="PropertyImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertySubtype" Association="Self.FK_PropertyDetails_PropertySubtype">
+            <End Role="PropertySubtype" EntitySet="PropertySubtypes" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertyTenure1" Association="Self.FK_PropertyDetails_PropertyTenure1">
+            <End Role="PropertyTenure" EntitySet="PropertyTenures" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyDetails_PropertyType" Association="Self.FK_PropertyDetails_PropertyType">
+            <End Role="PropertyType" EntitySet="PropertyTypes" />
+            <End Role="PropertyDetails" EntitySet="PropertyDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PropertyDbModelStoreContainer" CdmEntityContainer="PropertyDbEntities">
+          <EntitySetMapping Name="PropertyDetails">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertyDetail">
+              <MappingFragment StoreEntitySet="PropertyDetails">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="SubtypeID" ColumnName="SubtypeID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="FloorLevel" ColumnName="FloorLevel" />
+                <ScalarProperty Name="BedroomQty" ColumnName="BedroomQty" />
+                <ScalarProperty Name="BathroomQty" ColumnName="BathroomQty" />
+                <ScalarProperty Name="TenureID" ColumnName="TenureID" />
+                <ScalarProperty Name="Developer" ColumnName="Developer" />
+                <ScalarProperty Name="ListedDate" ColumnName="ListedDate" />
+                <ScalarProperty Name="MRT" ColumnName="MRT" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="ChildCare" ColumnName="ChildCare" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyImages">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertyImage">
+              <MappingFragment StoreEntitySet="PropertyImage">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyImage1" ColumnName="PropertyImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyLocations">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertyLocation">
+              <MappingFragment StoreEntitySet="PropertyLocation">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="AgentID" ColumnName="AgentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertySubtypes">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertySubtype">
+              <MappingFragment StoreEntitySet="PropertySubtype">
+                <ScalarProperty Name="SubtypeID" ColumnName="SubtypeID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Subtype" ColumnName="Subtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTenures">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertyTenure">
+              <MappingFragment StoreEntitySet="PropertyTenure">
+                <ScalarProperty Name="TenureID" ColumnName="TenureID" />
+                <ScalarProperty Name="TenureType" ColumnName="TenureType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTypes">
+            <EntityTypeMapping TypeName="PropertyDbModel.PropertyType">
+              <MappingFragment StoreEntitySet="PropertyType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e50ccb1ee4e433eb61c4a4ff1fc9406" Name="Diagram1">
+        <EntityTypeShape EntityType="PropertyDbModel.PropertyDetail" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyDbModel.PropertyImage" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyDbModel.PropertyLocation" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyDbModel.PropertySubtype" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyDbModel.PropertyTenure" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PropertyDbModel.PropertyType" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="PropertyDbModel.FK__PropertyI__Prope__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyDbModel.FK_PropertyDetails_PropertySubtype" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyDbModel.FK_PropertyDetails_PropertyTenure1" ManuallyRouted="false" />
+        <AssociationConnector Association="PropertyDbModel.FK_PropertyDetails_PropertyType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
